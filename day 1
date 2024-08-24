@@ -1,0 +1,42 @@
+//Question-1
+#include<iostream>
+using namespace std;
+int main(){
+    string name1;
+    cout<<"Enter the first string: "<<name1<<endl;
+    cin>>name1;
+    string name2;
+    cout<<"Enter the second string: "<<name2<<endl;
+     cin>>name2;
+    name1=name1+name2;
+    cout<<name1<<endl;
+    
+}
+
+//Question-2
+#include<iostream>
+using namespace std;
+int main(){
+    int grade;
+    int sum=0;
+    double avg;
+    const int numgrade=5;
+    for(int i=1;i<=numgrade;i++){
+        cout<<"Enter grade "<<i<<" : ";
+        cin>>grade;
+        sum=sum+grade;
+    }
+     avg=sum/numgrade;
+     cout<<"Average: "<<avg<<endl;
+    return 0;
+}
+
+//Question-3
+#include<iostream>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    int square=n*n;
+    cout<<"Square of a number is: "<<square<<endl;
+}
