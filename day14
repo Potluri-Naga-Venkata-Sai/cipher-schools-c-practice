@@ -1,0 +1,58 @@
+//Ques 1: Define a car class with properties brand name , model, engine, number of seats and method displayInfo that display the all information of class.
+#include<iostream>
+using namespace std;
+class car{
+    string brand;
+    string model;
+    string eng;
+    int no_of_seats;
+public:
+void getdata(){
+    cout<<"Enter Brand: ";
+    getline(cin,brand);
+    cout<<"Enter Model: ";
+    getline(cin,model);
+    cout<<"Enter engine: ";
+    getline(cin,eng);
+    cout<<"Enter no_of_seats: ";
+    cin>>no_of_seats;
+}
+void display(){
+    cout<<"Brand: "<<brand<<endl;
+    cout<<"Model: "<<model<<endl;
+    cout<<"Engine: "<<eng<<endl;
+    cout<<"No_of_seats: "<<no_of_seats;
+}
+};
+int main(){
+    car c;
+    c.getdata();
+    c.display();
+}
+
+//Ques 2: Write a program that defines a Rectangle class with a copy constructor
+#include <iostream>
+using namespace std;
+class Rectangle {
+private:
+    int length;
+    int width;
+public:
+    Rectangle(int l, int w) : length(l), width(w) {}
+    Rectangle(const Rectangle &rect) {
+        length = rect.length;
+        width = rect.width;
+    }
+    void display() const {
+        cout << "Length: " << length << ", Width: " << width << endl;
+    }
+};
+int main() {
+    Rectangle rect1(10, 5);
+    cout << "Original Rectangle: ";
+    rect1.display();
+    Rectangle rect2 = rect1;
+    cout << "Copied Rectangle: ";
+    rect2.display();
+    return 0;
+}
