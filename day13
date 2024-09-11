@@ -1,0 +1,25 @@
+//Write C++ program to demonstrate how to create dynamic variable using new keyword.
+#include <iostream>
+using namespace std;
+
+int main() {
+    int* dynamicInt = new int;
+    *dynamicInt = 10;
+    cout << "Value of dynamically allocated integer: " << *dynamicInt << endl;
+
+    int size;
+    cout << "Enter the size of the array: ";
+    cin >> size;
+    int* dynamicArray = new int[size];
+    for (int i = 0; i < size; i++) {
+        dynamicArray[i] = i + 1;
+    }
+    cout << "Dynamic array contents: ";
+    for (int i = 0; i < size; i++) {
+        cout << dynamicArray[i] << " ";
+    }
+    cout << endl;
+    delete dynamicInt;
+    delete[] dynamicArray;
+    return 0;
+}
