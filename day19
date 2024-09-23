@@ -1,0 +1,66 @@
+//Ques 1: Write a C++ program that take txt file input and write your details inside that file through c++ and then print this details.
+#include <iostream>
+#include <fstream>
+using namespace std;
+int main() {
+    string name, details;
+    int age;
+    cout << "Enter your name: ";
+    getline(cin, name);
+    cout << "Enter your age: ";
+    cin >> age;
+    cin.ignore();
+    ofstream outFile("details.txt");
+    if(outFile.is_open()) {
+        outFile << "Name: " << name << endl;
+        outFile << "Age: " << age << endl;
+        outFile.close();
+        cout << "Details saved to file!" << endl;
+    } else {
+        cout << "Error opening file!" << endl;
+    }
+    ifstream inFile("details.txt");
+    if(inFile.is_open()) {
+        cout << "\nReading from file:\n";
+        while(getline(inFile, details)) {
+            cout << details << endl;
+        }
+        inFile.close();
+    } else {
+        cout << "Error reading file!" << endl;
+    }
+}
+
+
+//Ques 2: Write C++ program that take input from the txt file and then print output inside terminal. Take any txt file by yourself.
+#include <iostream>
+#include <fstream>
+using namespace std;
+int main() {
+    ofstream outFile("example.txt");
+    if (outFile.is_open()) {
+        outFile << "This is a test file.\n";
+        outFile << "It contains some sample text.\n";
+        outFile << "Feel free to modify it!\n";
+        outFile.close();
+        cout << "Sample content written to example.txt" << endl;
+    } else {
+        cout << "Error creating file!" << endl;
+        return 1; 
+    }
+
+    string line;
+    ifstream inFile("example.txt");
+    
+    if (inFile.is_open()) {
+        cout << "\nReading from example.txt:\n";
+        while (getline(inFile, line)) {
+            cout << line << endl;
+        }
+        inFile.close(); 
+    } else {
+        cout << "Error opening file!" << endl;
+    }
+
+    return 0;
+}
