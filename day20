@@ -1,0 +1,71 @@
+// Ques 1: You are given a image in n*m matrix now you have to rotate the image by 90 degree. Input : n=3, m=3 , image[3][3]={[1, 2, 3],[4,5,6],[7,8,9]}. Output =7 4 1
+// 8 5 2
+// 9 6 3
+#include<iostream>
+using namespace std;
+int main(){
+    int rows,cols;
+    cin>>rows>>cols;
+    int matrix[rows][cols];
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
+            cin>>matrix[i][j];
+        }
+    }
+    //rotate by 90 degrees
+    int rotatedMatrix[cols][rows];
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
+            rotatedMatrix[j][rows-i-1]=matrix[i][j];
+        }
+    }
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
+            cout<<rotatedMatrix[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+    
+}
+
+// Ques 2: Write a C++ program that take 2D array from user and then sort this array. Input n=3, m=3 array=7 4 1
+// 8 5 2
+// 9 6 3
+
+// output :- 1 2 3
+// 4 5 6
+// 7 8 9
+#include<iostream>
+#include<algorithm>
+using namespace std;
+int main(){
+    int rows,cols;
+    cin>>rows>>cols;
+    int matrix[rows][cols];
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
+            cin>>matrix[i][j];
+        }
+    }
+    int totalElements=rows*cols;
+    int flatArray[totalElements];
+    int index=0;
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
+            flatArray[index++]=matrix[i][j];
+        }
+    }
+    sort(flatArray,flatArray+totalElements);
+    index=0;
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
+            matrix[i][j]=flatArray[index++];
+        }
+    }
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
+            cout<<matrix[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
