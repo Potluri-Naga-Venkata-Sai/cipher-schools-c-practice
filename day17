@@ -1,0 +1,49 @@
+//Ques 1: Write a C++ code that take 2D array and key from user. Now you have to check that key exist inside the array or not if it exits print YES otherwise NO.
+#include<iostream>
+using namespace std;
+int main(){
+    int rows,cols;
+    cin>>rows>>cols;
+    int matrix[rows][cols];
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
+            cin>>matrix[i][j];
+        }
+    }
+    int ele;
+    cin>>ele;
+    int flag=0;
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
+            if(matrix[i][j]==ele){
+                flag=1;
+            }
+        }
+    }
+    if(flag!=0){
+        cout<<"YES";
+    }else{
+        cout<<"No";
+    }
+}
+
+//Ques 2: Write a C++ code that take 2D array from user input. Now you have to find sum of all values of the array.
+#include<iostream>
+using namespace std;
+int main(){
+    int rows,cols;
+    cin>>rows>>cols;
+    int matrix[rows][cols];
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
+            cin>>matrix[i][j];
+        }
+    }
+    int sum=0;
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
+        sum=sum+matrix[i][j];
+    }
+    }
+    cout<<sum;
+}
