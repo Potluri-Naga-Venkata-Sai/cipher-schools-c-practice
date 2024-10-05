@@ -1,0 +1,68 @@
+// Ques 1. Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+// Sample :- Input: nums = [2,2,1]
+// Output: 1
+// Note: Take all the required input from user.
+#include<iostream>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    for(int i=0;i<n;i++){
+        for(int j=i;i<n;i++){
+            if(arr[i]!=arr[j]){
+                cout<<arr[i]<<" ";
+            }
+        }
+    }
+}
+
+// Implement the stack using linkedlist.
+#include<bits/stdc++.h>
+using namespace std;
+struct node{
+    int data;
+    node* next;
+};
+void push(node*& head,int value){
+    node* newnode=new node();
+    newnode->data=value;
+    newnode->next=head;
+    head=newnode;
+}
+void pop(node*& head){
+    if(head==nullptr){
+        cout<<"Stack is Empty!";
+    }else{
+        node* temp=head;
+        head=head->next;
+        delete temp;
+    }
+}
+int peek(node*& head){
+    if(head==nullptr){
+        cout<<"Stack is Empty";
+        return -1;
+    }else{
+        return head->data;
+    }
+}
+int main(){
+    node* head=nullptr;
+    int n;
+    cin>>n;
+    for(int i=0;i<n;i++){
+        int value;
+        cin>>value;
+        push(head,value);
+    }
+    cout<<"Before popped head is: ";
+    cout<<peek(head);
+    pop(head);
+    cout<<endl;
+    cout<<"After popped head is: ";
+    cout<<peek(head);
+}
