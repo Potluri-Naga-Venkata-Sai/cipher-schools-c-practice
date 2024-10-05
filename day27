@@ -1,0 +1,57 @@
+// Infix expression: The expression of the form a op b. When an operator is in-between every pair of operands.
+// Postfix expression: The expression of the form a b op. When an operator is followed for every pair of operands.
+// Note: The order of precedence is: ^ greater than * equals to / greater than + equals to -. Ignore the right associativity of ^. Input: str = "a+b*(c^d-e)^(f+g*h)-i"
+// Output: abcd^e-fgh*+^*+i-
+// Explanation:
+// After converting the infix expression
+// into postfix expression, the resultant
+// expression will be abcd^e-fgh*+^*+i- . Note :- Take all the required value from user.
+#include<bits/stdc++.h>
+using namespace std;
+int precedence(char op){
+    if(op=='^'){
+        return 3;
+    }else if(op=='*'||op=='/'){
+        return 2;
+    }else if(op=='+'||op=='-'){
+        return 1;
+    }
+    return 0;
+}
+bool is_operator(char c){
+    return c=='+'||c=='-'||c=='*'||c=='/'||c=='^';
+}
+string infix_to_postfix(const string& st){
+    stack<char> opstack;
+    string postfix;
+    for (char c: st){
+        if(isalnum(c)){
+             postfix=postfix+c;
+        }else if(c=='('){
+            opstack.push(c);
+        }else if(c==')'){
+            while(!opstack.empty() && opstack.top()!='('){
+                postfix=postfix+opstack.top();
+                opstack.pop();
+            }
+            opstack.pop();
+        }else if(is_operator(c)){
+            while(!opstack.empty()&&precedence(opstack.top())>=precedence(c)){
+                postfix=postfix+opstack.top();
+                opstack.pop();
+            }
+            opstack.push(c);
+        }
+    }
+    while(!opstack.empty()){
+        postfix=postfix+opstack.top();
+        opstack.pop();
+    }
+    return postfix;
+}
+int main(){
+    string st;
+    getline(cin,st);
+    string postfix=infix_to_postfix(st);
+    cout<<"Postfix Expression: "<<postfix<<endl;
+}
