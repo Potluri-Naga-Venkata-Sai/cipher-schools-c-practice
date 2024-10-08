@@ -1,0 +1,62 @@
+// Day - 29 Questions - Week-07 (September 24th, 2024)
+// Ques 1. You are required to create a basic system to simulate different types of musical instruments using polymorphism. Implement a base class Instrument and two derived classes Piano and Violin. Each instrument can be played in different ways but should share a common interface.
+
+// Requirements:
+
+// Base Class: Instrument
+// Methods:
+// void playSound(): A pure virtual method that will be overridden in derived classes to define how the instrument produces sound.
+// void display(): A virtual method to display the instrument type. This can be overridden in derived classes.
+// Derived Class: Piano (inherits from Instrument)
+// Methods:
+// void playSound(): Override the method to print "Playing a melodious piano tune."
+// void display(): Override the method to print "This is a Piano."
+// Derived Class: Violin (inherits from Instrument)
+// Methods:
+// void playSound(): Override the method to print "Playing a classical violin tune."
+// void display(): Override the method to print "This is a Violin."
+// Main Functionality:
+// Create an array of pointers to Instrument objects.
+// Dynamically allocate Piano and Violin objects and store them in the array.
+// Use polymorphism to call playSound() and display() methods for each object through the base class pointer.
+// Ensure proper memory management by deallocating all dynamically allocated objects at the end.
+#include<bits/stdc++.h>
+using namespace std;
+class Instrument{
+    public:
+    virtual void playsound() = 0;
+    virtual void display(){
+        cout<<"This is an Instrument"<<endl;
+    }
+    virtual ~Instrument(){}
+};
+class piano: public Instrument{
+    public:
+    void playsound() override{
+        cout<<"Playing a melodious piano tune"<<endl;
+    }
+    void display() override{
+        cout<<"This is a piano"<<endl;
+    }
+};
+class violin: public Instrument{
+    public:
+    void playsound() override{
+        cout<<"Playing a clssical violin tune"<<endl;
+    }
+    void display() override{
+        cout<<"This is a violin"<<endl;
+    }
+};
+int main(){
+    Instrument* Instruments[2];
+    Instruments[0]= new piano();
+    Instruments[1]= new violin();
+    for(int i=0;i<2;i++){
+        Instruments[i]->display();
+        Instruments[i]->playsound();
+    }
+    for(int i=0;i<2;i++){
+        delete Instruments[i];
+    }
+}
