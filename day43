@@ -1,0 +1,49 @@
+// Day - 43 Questions - Week-09 (October 15th, 2024)
+// Ques 1. Write a C++ program that reads integers from a file and calculates their sum. If the file contains any non-integer data, throw a custom exception NonIntegerDataException and handle it by displaying an error message. If the file cannot be opened, throw a standard ios_base::failure exception.
+
+// Your program should:
+
+// Define the custom exception NonIntegerDataException.
+// Open a file and attempt to read all integers from it.
+// If the file contains non-integer data or fails to open, catch the exceptions and display appropriate error messages.
+// If all data is valid, calculate and print the sum of the integers.
+// Constraints:
+
+// The file path should be provided by the user.
+// Assume that all integers are non-negative.Sample Input : 10 20 30 forty 50
+// Sample Output:Error: Non-integer data found in the file.
+// Handle multiple errors (like file open failure and non-integer data) using nested try-catch blocks.
+
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    string filePath;
+    cout << "Enter the file path: ";
+    cin >> filePath;
+    int sum = 0;
+    int value;
+    try {
+        ifstream inputFile(filePath);
+        if (!inputFile.is_open()) {
+            throw ios_base::failure("Failed to open the file.");
+        }
+        while (inputFile >> value) {
+            sum += value;
+        }
+        if (inputFile.fail() && !inputFile.eof()) {
+            throw ios_base::failure("Non-integer data found in the file.");
+        }
+        cout << "The sum of the integers is: " << sum << endl;
+        inputFile.close();
+
+    } catch (const ios_base::failure& e) {
+        cout << "Error: " << e.what() << endl;
+    } catch (const exception& e) {
+        cout << "Error: " << e.what() << endl;
+    }
+    return 0;
+}
