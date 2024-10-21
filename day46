@@ -1,0 +1,162 @@
+// Ques 1. Write a C++ function to calculate the height (or depth) of a binary tree. The height of a binary tree is the number of edges in the longest path from the root to a leaf node.
+#include<bits/stdc++.h>
+using namespace std;
+struct node{
+  int data;
+  node* left;
+  node* right;
+};
+node* createnode(int value){
+  node* newnode=new node();
+  newnode->data=value;
+  newnode->left=nullptr;
+  newnode->right=nullptr;
+  return newnode;
+}
+node* insertnode(node* root,int value){
+  if(root==nullptr){
+    return createnode(value);
+  }else{
+    if(value<root->data){
+      root->left=insertnode(root->left,value);
+    }else if(value>root->data){
+      root->right=insertnode(root->right,value);
+    }
+  }
+  return root;
+}
+int calculateheight(node* root){
+  if(root==nullptr){
+    return -1;
+  }else{
+    int left=calculateheight(root->left);
+    int right=calculateheight(root->right);
+    return max(left,right)+1;
+  }
+}
+int main(){
+  node* root=nullptr;
+  int n;
+  cin>>n;
+  for(int i=0;i<n;i++){
+    int value;
+    cin>>value;
+    root=insertnode(root,value);
+  }
+  int height=calculateheight(root);
+  cout<<"Height of the tree: "<<height<<endl;
+}
+
+//Ques 2. Write a C++ function to count the total number of nodes in a binary tree. Implement a recursive approach.
+// For the tree below, calculate the total number of nodes:
+
+// 1
+// / \
+// 2 3
+// / \
+// 4 5
+
+// Output :Total number of nodes: 5
+#include<bits/stdc++.h>
+using namespace std;
+struct node{
+  int data;
+  node* left;
+  node* right;
+};
+node* createnode(int value){
+  node* newnode=new node();
+  newnode->data=value;
+  newnode->left=nullptr;
+  newnode->right=nullptr;
+  return newnode;
+}
+node* insertnode(node* root,int value){
+  if(root==nullptr){
+    return createnode(value);
+  }else{
+    if(value<root->data){
+      root->left=insertnode(root->left,value);
+    }else if(value>root->data){
+      root->right=insertnode(root->right,value);
+    }
+  }
+  return root;
+}
+int calculatenodes(node* root){
+  if(root==nullptr){
+    return 0;
+  }else{
+    return 1+calculatenodes(root->left)+calculatenodes(root->right);
+  }
+}
+int main(){
+  node* root=nullptr;
+  int n;
+  cin>>n;
+  for(int i=0;i<n;i++){
+    int value;
+    cin>>value;
+    root=insertnode(root,value);
+  }
+  int nodes=calculatenodes(root);
+  cout<<"No of nodes are: "<<nodes;
+}
+
+// Ques 3. Write a C++ function to find the maximum value stored in a binary tree. Implement a recursive solution to traverse the tree and find the largest element.
+// For the tree below, find the maximum value:
+// 10
+// / \
+// 20 30
+// / \
+// 40 50
+
+// Output:- Maximum value: 50
+#include<bits/stdc++.h>
+using namespace std;
+struct node{
+  int data;
+  node* left;
+  node* right;
+};
+node* createnode(int value){
+  node* newnode=new node();
+  newnode->data=value;
+  newnode->left=nullptr;
+  newnode->right=nullptr;
+  return newnode;
+}
+node* insertnode(node* root,int value){
+  if(root==nullptr){
+    return createnode(value);
+  }else{
+    if(value<root->data){
+      root->left=insertnode(root->left,value);
+    }else if(value>root->data){
+      root->right=insertnode(root->right,value);
+    }
+  }
+  return root;
+}
+int findmax(node* root){
+  if(root==nullptr){
+    return '\0';
+  }else{
+    int max_value=root->data;
+    int left=findmax(root->left);
+    int right=findmax(root->right);
+    return max(max_value,max(left,right));
+  }
+}
+int main(){
+  node* root=nullptr;
+  int n;
+  cin>>n;
+  for(int i=0;i<n;i++){
+    int value;
+    cin>>value;
+    root=insertnode(root,value);
+  }
+  int max_val=findmax(root);
+  cout<<"Maximum element in a tree is: "<<max_val<<endl;
+}
