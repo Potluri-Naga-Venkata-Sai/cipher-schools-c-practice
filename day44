@@ -1,0 +1,123 @@
+// Ques 1. Write a C++ program to represent a simple binary tree. Define a Node structure with integer data and pointers to the left and right children. Create a binary tree with the following structure:
+// 1
+// / \
+// 2 3
+// / \
+// 4 5
+#include<bits/stdc++.h>
+using namespace std;
+struct node{
+  int data;
+  node* left;
+  node* right;
+};
+node* createnode(int value){
+  node* newnode=new node();
+  newnode->data=value;
+  newnode->left=nullptr;
+  newnode->right=nullptr;
+  return newnode;
+}
+node* insertnode(node* root,int value){
+  if(root==nullptr){
+    return createnode(value);
+  }else{
+    if(value<root->data){
+      root->left=insertnode(root->left,value);
+    }else if(value>root->data){
+      root->right=insertnode(root->right,value);
+    }
+  }
+  return root;
+}
+void inorder(node* root){
+  if(root==nullptr){
+    return;
+  }
+  inorder(root->left);
+  cout<<root->data<<" ";
+  inorder(root->right);
+}
+
+int main(){
+  node* root=nullptr;
+  int n;
+  cin>>n;
+  for(int i=0;i<n;i++){
+    int value;
+    cin>>value;
+    root=insertnode(root,value);
+  }
+  cout<<"Inorder traversal: ";
+  inorder(root);
+  cout<<endl;
+  cout<<"Postorder traversal: ";
+  postorder(root);
+}
+
+// Ques 2. Implement a function in C++ to perform a preorder traversal of a binary tree. Preorder traversal visits nodes in the following order: root, left, right.
+// Write a program to print the preorder traversal of the tree structure below:
+// Input :
+// 1
+// / \
+// 2 3
+// / \
+// 4 5
+// Expected Output :- 1 2 4 5 3
+#include<bits/stdc++.h>
+using namespace std;
+struct node{
+  int data;
+  node* left;
+  node* right;
+};
+node* createnode(int value){
+  node* newnode=new node();
+  newnode->data=value;
+  newnode->left=nullptr;
+  newnode->right=nullptr;
+  return newnode;
+}
+node* insertnode(node* root,int value){
+  if(root==nullptr){
+    return createnode(value);
+  }else{
+    if(value<root->data){
+      root->left=insertnode(root->left,value);
+    }else if(value>root->data){
+      root->right=insertnode(root->right,value);
+    }
+  }
+  return root;
+}
+void inorder(node* root){
+  if(root==nullptr){
+    return;
+  }
+  inorder(root->left);
+  cout<<root->data<<" ";
+  inorder(root->right);
+}
+void preorder(node* root){
+  if(root==nullptr){
+    return;
+  }
+  cout<<root->data<<" ";
+  preorder(root->left);
+  preorder(root->right);
+}
+int main(){
+  node* root=nullptr;
+  int n;
+  cin>>n;
+  for(int i=0;i<n;i++){
+    int value;
+    cin>>value;
+    root=insertnode(root,value);
+  }
+  cout<<"Inorder traversal: ";
+  inorder(root);
+  cout<<endl;
+  cout<<"Preorder traversal: ";
+  postorder(root);
+}
