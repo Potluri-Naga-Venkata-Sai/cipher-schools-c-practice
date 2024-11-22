@@ -1,0 +1,122 @@
+// Ques 1. Write a function to search for a specific value in a binary tree. If the value is found, return true; otherwise, return false. Use a recursive approach.
+// Input:
+// 10
+// / \
+// 5 15
+// / \ \
+// 3 7 18
+// Search for: 7
+// Output: true
+
+#include<bits/stdc++.h>
+using namespace std;
+struct node{
+  int data;
+  node* left;
+  node* right;
+};
+node* createnode(int value){
+  node* newnode=new node();
+  newnode->data=value;
+  newnode->left=nullptr;
+  newnode->right=nullptr;
+  return newnode;
+}
+node* insert(node* root,int value){
+  if(root==nullptr){
+    return createnode(value);
+  }else if(value<root->data){
+    root->left=insert(root->left,value);
+  }else if(value>root->data){
+    root->right=insert(root->right,value);
+  }
+  return root;
+}
+bool findele(node* root,int ele){
+  if(root==nullptr){
+    return false;
+  }
+  if(root->data==ele){
+    return true;
+  }else if(ele<root->data){
+    return findele(root->left,ele);
+  }else if(ele>root->data){
+    return findele(root->right,ele);
+  }
+}
+int main(){
+  node* root=nullptr;
+  int n;
+  cin>>n;
+  for(int i=0;i<n;i++){
+    int value;
+    cin>>value;
+    root=insert(root,value);
+  }
+  int ele;
+  cin>>ele;
+  if(findele(root,ele)){
+    cout<<"True"<<endl;
+  }else{
+    cout<<"false"<<endl;
+  }
+}
+
+// Ques 2. Write a function to find the minimum value in a Binary Search Tree (BST).
+// Input:
+// 20
+// / \
+// 10 30
+// / \
+// 5 15
+// Output: 5
+
+#include<bits/stdc++.h>
+using namespace std;
+struct node{
+  int data;
+  node* left;
+  node* right;
+};
+node* createnode(int value){
+  node* newnode=new node();
+  newnode->data=value;
+  newnode->left=nullptr;
+  newnode->right=nullptr;
+  return newnode;
+}
+node* insert(node* root,int value){
+  if(root==nullptr){
+    return createnode(value);
+  }else if(value<root->data){
+    root->left=insert(root->left,value);
+  }else if(value>root->data){
+    root->right=insert(root->right,value);
+  }
+  return root;
+}
+node* findmin(node* root){
+  if(root==nullptr){
+    return nullptr;
+  }
+  while(root->left!=nullptr){
+    root=root->left;
+  }
+  return root;
+}
+int main(){
+  node* root=nullptr;
+  int n;
+  cin>>n;
+  for(int i=0;i<n;i++){
+    int value;
+    cin>>value;
+    root=insert(root,value);
+  }
+  node* result=findmin(root);
+  if(result!=nullptr){
+    cout<<"Minimum value is: "<<result->data<<endl;
+  }else{
+    cout<<"Tree is empty"<<endl;
+  }
+}
